@@ -157,36 +157,6 @@ def send_message(recipient_id, msg_type, message):
         log(r.status_code)
         log(r.text)    
 
-def send_sticker(recipient_id, sticker_id, sticker_url):
-    
-    log("Sending message to {recipient} : {sticker} : {url}".format(recipient=recipient_id, sticker=sticker_id, url=sticker_url))
-
-    params = {
-        "access_token": "EAAJAy6EtyYgBAH2TvlczrJJ3443dGF7YZAmkutzDCraRSrdtGI3wP7b57beOmOMKEB2Pf8dD1ueRXeVgDAvXpsBZAzOX0gGnstNkLUos2dF8YCgov2AfpOi37YLocCGYkW3zs3iZBwPlwx24C9d2rNUt30BU9t8ZBsZCUbK3ZAwAZDZD"
-    }
-    headers = {
-        "Content-Type": "application/json"
-    }
-    data = json.dumps({
-        "recipient": {
-            "id": recipient_id
-        },
-        "message": {
-            "sticker_id" : sticker_id,
-            "attachment": {
-                "type":"image",
-                "payload":{
-                    "url":sticker_url
-                }
-            }
-        }
-    })
-    r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=data)
-    if r.status_code != 200:
-        log(r.status_code)
-        log(r.text)
-
-
 def log(message):  # simple wrapper for logging to stdout on heroku
     print str(message)
     sys.stdout.flush()
