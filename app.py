@@ -89,14 +89,17 @@ def get_userinfo(user_id):
     get_url = "https://graph.facebook.com/v2.6/{USER_ID}?fields=first_name,last_name,profile_pic,locale,timezone,gender&access_token={PAGE_ACCESS_TOKEN}".format(USER_ID=user_id,PAGE_ACCESS_TOKEN=params["access_token"])
     print "url : ", get_url
     r = requests.get(get_url)
-    
-    if r.status_code != 200:
+
+    if r.status_code == 200 :
+        info = json.loads(r.content)
+        log("User Info : {data}".format(data=info))
+        return info["first_name"]
+    else :
         log(r.status_code)
         log(r.text)
+    return ""
 
-    info = json.loads(r.content)
-    log("User Info : {data}".format(data=info))
-    return info["first_name"]    
+        
 
 def send_message(recipient_id, msg_type, message):
 
