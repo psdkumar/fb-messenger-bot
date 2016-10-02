@@ -49,7 +49,7 @@ def webook():
                         start = ["Hi","hi","HI","Hey","hey","HEY","Hello","hello","HELLO"]
                         if message_text in start:
                             user_name = get_userinfo(sender_id)
-                            message_text = message["text"] + " " + user_name
+                            message_text = message["text"] + " " +  user_name
 
                         print msg_type, " : ", message_text
                         send_message(sender_id, msg_type, message_text)
