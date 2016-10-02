@@ -44,11 +44,11 @@ def webook():
                     # Text Message
                     if message.get("text") :
                         msg_type = "text"
-                        user_name = get_userinfo(sender_id)
                         message_text = message["text"].encode('utf-8')  # the message's text
 
                         start = ["Hi","hi","HI","Hey","hey","HEY","Hello","hello","HELLO"]
                         if message_text in start:
+                            user_name = get_userinfo(sender_id)
                             message_text = message["text"] + " " + user_name
 
                         print msg_type, " : ", message_text
